@@ -1,0 +1,58 @@
+{
+  "name": "Telegram Reaction Example Workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "When clicking Test workflow",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "operation": "setReaction",
+        "chatId": "@my_channel",
+        "messageId": 123,
+        "reactions": {
+          "reactionValues": [
+            {
+              "type": "emoji",
+              "emoji": "👍"
+            },
+            {
+              "type": "emoji",
+              "emoji": "❤️"
+            }
+          ]
+        },
+        "additionalOptions": {
+          "isBig": true
+        }
+      },
+      "name": "Telegram Reaction",
+      "type": "n8n-nodes-telegram-reaction.telegramReaction",
+      "typeVersion": 1,
+      "position": [450, 300],
+      "credentials": {
+        "telegramApi": {
+          "id": "1",
+          "name": "Telegram Bot"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "When clicking Test workflow": {
+      "main": [
+        [
+          {
+            "node": "Telegram Reaction",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {}
+}

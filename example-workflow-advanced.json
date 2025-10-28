@@ -1,0 +1,124 @@
+{
+  "name": "Auto-React to Telegram Messages",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": ["message"]
+      },
+      "name": "Telegram Trigger",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "webhookId": "telegram-webhook",
+      "credentials": {
+        "telegramApi": {
+          "id": "1",
+          "name": "Telegram Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json.message.text}}",
+              "operation": "contains",
+              "value2": "спасибо"
+            }
+          ]
+        }
+      },
+      "name": "IF Contains Thank You",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "operation": "setReaction",
+        "chatId": "={{$json.message.chat.id}}",
+        "messageId": "={{$json.message.message_id}}",
+        "reactions": {
+          "reactionValues": [
+            {
+              "type": "emoji",
+              "emoji": "🙏"
+            },
+            {
+              "type": "emoji",
+              "emoji": "❤️"
+            }
+          ]
+        }
+      },
+      "name": "Add Thank You Reaction",
+      "type": "n8n-nodes-telegram-reaction.telegramReaction",
+      "typeVersion": 1,
+      "position": [650, 200],
+      "credentials": {
+        "telegramApi": {
+          "id": "1",
+          "name": "Telegram Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "setReaction",
+        "chatId": "={{$json.message.chat.id}}",
+        "messageId": "={{$json.message.message_id}}",
+        "reactions": {
+          "reactionValues": [
+            {
+              "type": "emoji",
+              "emoji": "👍"
+            }
+          ]
+        }
+      },
+      "name": "Add Default Reaction",
+      "type": "n8n-nodes-telegram-reaction.telegramReaction",
+      "typeVersion": 1,
+      "position": [650, 400],
+      "credentials": {
+        "telegramApi": {
+          "id": "1",
+          "name": "Telegram Bot"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "IF Contains Thank You",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF Contains Thank You": {
+      "main": [
+        [
+          {
+            "node": "Add Thank You Reaction",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Add Default Reaction",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {}
+}

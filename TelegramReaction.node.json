@@ -1,0 +1,28 @@
+{
+  "node": "n8n-nodes-telegram-reaction.telegramReaction",
+  "nodeVersion": "1.0",
+  "codexVersion": "1.0",
+  "categories": ["Communication"],
+  "resources": {
+    "credentialDocumentation": [
+      {
+        "url": "https://core.telegram.org/bots#6-botfather"
+      }
+    ],
+    "primaryDocumentation": [
+      {
+        "url": "https://github.com/yourusername/n8n-nodes-telegram-reaction"
+      }
+    ],
+    "generic": [
+      {
+        "label": "Telegram Bot API",
+        "url": "https://core.telegram.org/bots/api"
+      }
+    ]
+  },
+  "alias": ["Telegram", "Reaction", "Emoji"],
+  "subcategories": {
+    "Communication": ["Social Media"]
+  }
+}

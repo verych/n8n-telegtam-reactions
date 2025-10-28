@@ -1,0 +1,11 @@
+Файл,Описание,Тип
+TelegramReaction.node.ts,Основной код ноды с логикой,TypeScript
+TelegramReaction.node.json,Метаданные ноды (codex),JSON
+package.json,Конфигурация npm пакета,JSON
+tsconfig.json,Конфигурация TypeScript,JSON
+README.md,Основная документация,Markdown
+INSTALLATION.md,Руководство по установке,Markdown
+PROJECT_STRUCTURE.md,Структура проекта,Markdown
+.gitignore,Git ignore правила,Text
+example-workflow-basic.json,Базовый пример workflow,JSON
+example-workflow-advanced.json,Продвинутый пример workflow,JSON
